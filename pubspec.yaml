@@ -1,0 +1,60 @@
+name: skinora
+description: "Skinora - AI Powered Skin, Hair & Wellness Companion"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI / Icons / Fonts
+  cupertino_icons: ^1.0.6
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  lottie: ^3.1.2
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+
+  # Navigation
+  go_router: ^14.2.0
+
+  # Networking
+  dio: ^5.4.3+1
+
+  # Local Storage
+  shared_preferences: ^2.2.3
+  flutter_secure_storage: ^9.2.2
+
+  # Animations
+  animate_do: ^3.3.4
+  shimmer: ^3.0.0
+
+  # Forms / Validation
+  smooth_page_indicator: ^1.1.0
+
+  # Charts (for progress/analytics later)
+  fl_chart: ^0.68.0
+
+  # Image handling
+  image_picker: ^1.1.2
+  cached_network_image: ^3.3.1
+
+  # Utils
+  intl: ^0.19.0
+  percent_indicator: ^4.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
