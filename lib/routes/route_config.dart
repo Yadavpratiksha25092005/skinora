@@ -14,6 +14,8 @@ import '../screens/assessment/assessment_results_screen.dart';
 import '../screens/assessment/skin_goals_screen.dart';
 import '../screens/assessment/hair_goals_screen.dart';
 import '../screens/assessment/routine_result_screen.dart';
+import '../screens/features/community_screen.dart';
+import '../screens/doctor/doctor_dashboard.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -77,6 +79,14 @@ class AppRouter {
         path: '/home',
         builder: (context, state) => const HomeDashboard(),
       ),
+      GoRoute(
+        path: '/community',
+        builder: (context, state) => const CommunityScreen(),
+      ),
+      GoRoute(
+  path: '/doctor-home',
+  builder: (context, state) => const DoctorDashboard(),
+),
     ],
   );
 }
