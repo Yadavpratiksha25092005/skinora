@@ -16,6 +16,9 @@ import '../screens/assessment/hair_goals_screen.dart';
 import '../screens/assessment/routine_result_screen.dart';
 import '../screens/features/community_screen.dart';
 import '../screens/doctor/doctor_dashboard.dart';
+import '../screens/wellness/cycle_calendar_screen.dart';
+import '../screens/wellness/symptom_tracker_screen.dart';
+import '../screens/wellness/wellness_info_screen.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -87,6 +90,18 @@ class AppRouter {
   path: '/doctor-home',
   builder: (context, state) => const DoctorDashboard(),
 ),
+      GoRoute(
+        path: '/cycle-calendar',
+        builder: (context, state) => const CycleCalendarScreen(),
+      ),
+      GoRoute(
+        path: '/symptom-tracker',
+        builder: (context, state) => const SymptomTrackerScreen(),
+      ),
+      GoRoute(
+        path: '/wellness-info',
+        builder: (context, state) => const WellnessInfoScreen(),
+      ),
     ],
   );
 }

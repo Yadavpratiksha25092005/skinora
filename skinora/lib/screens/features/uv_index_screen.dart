@@ -29,13 +29,13 @@ class UvIndexScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 48),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Colors.orange.shade300, Colors.deepOrange.shade400],
+                      colors: [Color(0xFFEC6FA6), AppTheme.primaryColor],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                     borderRadius: BorderRadius.circular(32),
                     boxShadow: [
-                      BoxShadow(color: Colors.orange.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10)),
+                      BoxShadow(color: AppTheme.primaryColor.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10)),
                     ],
                   ),
                   child: Column(
@@ -96,7 +96,7 @@ class UvIndexScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)],
             ),
-            child: Icon(icon, color: Colors.orange),
+            child: Icon(icon, color: AppTheme.primaryColor),
           ),
           const SizedBox(width: 16),
           Expanded(

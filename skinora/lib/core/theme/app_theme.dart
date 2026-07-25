@@ -3,15 +3,32 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Brand Colors
-  static const Color primaryColor = Color(0xFF9E86F2); // Soft Lavender/Purple
-  static const Color secondaryColor = Color(0xFFF3E8FF); // Light Lavender
+  static const Color primaryColor = Color(0xFF6C4CD4); // Rich Deep Purple
+  static const Color secondaryColor = Color(0xFFDFC9FF); // Deeper Lavender
   static const Color backgroundColor = Colors.white;
-  static const Color surfaceColor = Color(0xFFF8F9FA);
-  
+  static const Color surfaceColor = Color(0xFFF3EFFC);
+
   static const Color textPrimaryColor = Color(0xFF1E1E24);
   static const Color textSecondaryColor = Color(0xFF7D7D8E);
   static const Color errorColor = Color(0xFFF28686);
   static const Color successColor = Color(0xFF86F2B8);
+
+  static List<BoxShadow> get cardShadow => [
+        BoxShadow(
+          color: primaryColor.withOpacity(0.14),
+          blurRadius: 18,
+          offset: const Offset(0, 8),
+        ),
+      ];
+
+  static List<BoxShadow> get raisedShadow => [
+        BoxShadow(
+          color: primaryColor.withOpacity(0.40),
+          blurRadius: 24,
+          offset: const Offset(0, 12),
+        ),
+      ];
+  static const List<Color> primaryGradient = [Color(0xFF6C4CD4), Color(0xFFB9A6FF)];
 
   static ThemeData get lightTheme {
     return ThemeData(
@@ -75,7 +92,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide.none, // Wait, maybe slight border on focus
+          borderSide: BorderSide.none,
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),

@@ -4,6 +4,7 @@ import '../../core/theme/app_theme.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/quiz_progress_bar.dart';
 import '../../widgets/option_card.dart';
+import '../../services/assessment_draft.dart';
 
 class SkinAssessmentScreen extends StatefulWidget {
   const SkinAssessmentScreen({super.key});
@@ -14,37 +15,58 @@ class SkinAssessmentScreen extends StatefulWidget {
 
 class _SkinAssessmentScreenState extends State<SkinAssessmentScreen> {
   int _currentQuestionIndex = 0;
-  
+
+  // Each option now carries a `value` — the exact string the backend expects.
   final List<Map<String, dynamic>> _questions = [
     {
       'question': 'How does your skin feel after washing?',
+      'field': 'skinFeel',
       'options': [
-        {'text': 'Tight and dry', 'icon': Icons.dry},
-        {'text': 'Oily and shiny', 'icon': Icons.water_drop},
-        {'text': 'Oily in T-zone, dry elsewhere', 'icon': Icons.tune},
-        {'text': 'Normal and comfortable', 'icon': Icons.sentiment_satisfied_alt},
+        {'text': 'Tight and dry', 'icon': Icons.dry, 'value': 'tight_dry'},
+        {'text': 'Oily and shiny', 'icon': Icons.water_drop, 'value': 'oily_shiny'},
+        {'text': 'Oily in T-zone, dry elsewhere', 'icon': Icons.tune, 'value': 'combination'},
+        {'text': 'Normal and comfortable', 'icon': Icons.sentiment_satisfied_alt, 'value': 'normal'},
       ]
     },
     {
       'question': 'How often do you get acne?',
+      'field': 'acneFrequency',
       'options': [
-        {'text': 'Rarely or never', 'icon': Icons.close_fullscreen},
-        {'text': 'Occasionally', 'icon': Icons.brightness_medium},
-        {'text': 'Frequently', 'icon': Icons.coronavirus_outlined},
+        {'text': 'Rarely or never', 'icon': Icons.close_fullscreen, 'value': 'rarely'},
+        {'text': 'Occasionally', 'icon': Icons.brightness_medium, 'value': 'occasionally'},
+        {'text': 'Frequently', 'icon': Icons.coronavirus_outlined, 'value': 'frequently'},
       ]
     },
     {
       'question': 'How much water do you drink daily?',
+      'field': 'waterIntake',
       'options': [
-        {'text': 'Less than 4 glasses', 'icon': Icons.water_drop_outlined},
-        {'text': '4-8 glasses', 'icon': Icons.invert_colors},
-        {'text': 'More than 8 glasses', 'icon': Icons.water_drop},
+        {'text': 'Less than 4 glasses', 'icon': Icons.water_drop_outlined, 'value': 'low'},
+        {'text': '4-8 glasses', 'icon': Icons.invert_colors, 'value': 'medium'},
+        {'text': 'More than 8 glasses', 'icon': Icons.water_drop, 'value': 'high'},
       ]
     },
-    // Adding just a subset of questions for simplicity
   ];
 
   final Map<int, int> _selectedAnswers = {};
+  final AssessmentDraft _draft = AssessmentDraft();
+
+  void _saveAnswerToDraft(int questionIndex, int optionIndex) {
+    final field = _questions[questionIndex]['field'] as String;
+    final value = (_questions[questionIndex]['options'] as List)[optionIndex]['value'] as String;
+
+    switch (field) {
+      case 'skinFeel':
+        _draft.skinFeel = value;
+        break;
+      case 'acneFrequency':
+        _draft.acneFrequency = value;
+        break;
+      case 'waterIntake':
+        _draft.waterIntake = value;
+        break;
+    }
+  }
 
   void _nextQuestion() {
     if (_selectedAnswers[_currentQuestionIndex] == null) {
@@ -98,9 +120,7 @@ class _SkinAssessmentScreenState extends State<SkinAssessmentScreen> {
               const SizedBox(height: 32),
               Text(
                 currentQ['question'],
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontSize: 26,
-                    ),
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(fontSize: 26),
               ),
               const SizedBox(height: 32),
               Expanded(
@@ -115,6 +135,7 @@ class _SkinAssessmentScreenState extends State<SkinAssessmentScreen> {
                         setState(() {
                           _selectedAnswers[_currentQuestionIndex] = index;
                         });
+                        _saveAnswerToDraft(_currentQuestionIndex, index);
                       },
                     );
                   },
